@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Kalkulator peler</title>
 </head>
-<body 
-  <h2>Kalkulator Simple</h2>
+<body>  
+  <h2>Calculator Simple</h2>
+  <label>Tekan tombol reset jika ingin menghapus semua angka pada label input!</label><br>
+    <input type="button" value="reset" onclick="resetBtn()" id="btnReset"><br><br>
   <label for="input1">Input nilai 1:</label>
     <input type="number" placeholder="masukan inputan angka 1" id="input1"><br><br>
   <label>input nilai 2:</label>
@@ -16,10 +18,12 @@
     <input type="radio" name="operator" id="tambah" onclick="tambah()">tambah<br>
     <input type="radio" name="operator" id="kurang" onclick="kurang()">kurang<br>
     <input type="radio" name="operator" id="kali" onclick="kali()">kali<br>
-    <input type="radio" name="operator" id="bagi" onclick="bagi()">bagi<br><br>
+    <input type="radio" name="operator" id="bagi" onclick="bagi()">bagi<br>
+    <input type="radio" name="operator" id="modulus" onclick="modulus()">modulus<br>
+    <input type="radio" name="operator" id="persen" onclick="persen()">persen<br>
+    <input type="radio" name="operator" id="pangkat" onclick="pangkat()">pangkat<br><br>
   <label>Hasil:</label>
     <input type="text" id="hasil" disabled>
-    <input type="button" value="reset" onclick="resetBtn()" id="btnReset">
 
     <script>
       function ambilNilai()
@@ -28,7 +32,7 @@
         nilaiDua = document.getElementById('input2').value;
         if (nilaiSatu == '' || nilaiDua == '')
         {
-          return alert('Nilai harus terisi cooy');
+          return alert('Nilai pada input harus terisi coy!');
         } else {
           nilai = [nilaiSatu,nilaiDua];
           return nilai;
@@ -69,6 +73,27 @@
         return printHasil(prosesBagi);
       }
 
+      function modulus()
+      {
+        nilai = ambilNilai();
+        prosesModulus = parseInt(nilai[0]) % parseInt(nilai[1]);
+        return printHasil(prosesModulus);
+      }
+
+      function persen()
+      {
+        nilai = ambilNilai();
+        prosesPersen = parseInt(nilai[0])  * (nilai[1]) /100 ;
+        return printHasil(prosesPersen);
+      }
+
+      function pangkat()
+      {
+        nilai = ambilNilai();
+        prosesPangkat = Math.pow(parseInt(nilai[0]) , (nilai[1]));
+        return printHasil(prosesPangkat);
+      }
+
       function resetBtn()
       {
         document.getElementById('input1').value = "";
@@ -78,6 +103,9 @@
         document.getElementById('kurang').checked = false;
         document.getElementById('kali').checked = false;
         document.getElementById('bagi').checked = false;
+        document.getElementById('modulus').checked = false;
+        document.getElementById('persen').checked = false;
+        document.getElementById('pangkat').checked = false;
       }
     </script>
 </body>
